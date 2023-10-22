@@ -1,0 +1,80 @@
+﻿@model IEnumerable<HelloWorld.Models.Empleo>
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<h1>Ofertas de Empleo</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nueva Oferta</a>
+</p>
+
+<!-- Formulario de búsqueda -->
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Buscar por título o categoría: <input type="text" name="busqueda" value="@ViewData["FiltroActual"]" />
+            <input type="submit" value="Buscar" class="btn btn-default" /> |
+            <a asp-action="Index">Resetear</a>
+        </p>
+    </div>
+</form>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th style="display:none;">
+                <!-- Ocultamos el encabezado del logo -->
+                Logo
+            </th>
+            <th>
+                @Html.ActionLink("Título", "Index", new { ordenamiento = ViewBag.OrdenamientoTitulo, busqueda = ViewBag.FiltroActual })
+            </th>
+            <th>
+                Categoría
+            </th>
+            <th>
+                @Html.ActionLink("Salario", "Index", new { ordenamiento = ViewBag.OrdenamientoSalario, busqueda = ViewBag.FiltroActual })
+            </th>
+            <th>
+                @Html.ActionLink("Fecha", "Index", new { ordenamiento = ViewBag.OrdenamientoFecha, busqueda = ViewBag.FiltroActual })
+            </th>
+            <th>
+                Enlace
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="display:none;">
+                    <!-- Ocultamos la celda del logo -->
+                    <img src="@item.Logo" alt="@item.Titulo" width="50" height="50" style="object-fit: cover;" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    <a href="@item.Enlace" target="_blank">Aplicar</a>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

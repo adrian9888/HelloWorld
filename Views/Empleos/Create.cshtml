@@ -1,0 +1,66 @@
+﻿@model HelloWorld.Models.Empleo
+
+@{
+    ViewData["Title"] = "Crear Empleo";
+}
+
+<h1>Crear Nueva Oferta de Empleo</h1>
+
+<h4>Información del Empleo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Logo" class="control-label">Logo de la Empresa</label>
+                <input asp-for="Logo" type="file" class="form-control" />
+                <span asp-validation-for="Logo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Titulo" class="control-label">Título del Empleo</label>
+                <input asp-for="Titulo" class="form-control" />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Categoria" class="control-label">Categoría</label>
+                <select asp-for="Categoria" class="form-control">
+                    <option value="Tiempo Completo">Tiempo Completo</option>
+                    <option value="Medio Tiempo">Medio Tiempo</option>
+                    <option value="Por Contrato">Por Contrato</option>
+                    <option value="Freelance">Freelance</option>
+                    <option value="Prácticas">Prácticas</option>
+                </select>
+                <span asp-validation-for="Categoria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Salario" class="control-label">Salario</label>
+                <input asp-for="Salario" class="form-control" />
+                <span asp-validation-for="Salario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fecha" class="control-label">Fecha de Publicación</label>
+                <input asp-for="Fecha" type="date" class="form-control" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enlace" class="control-label">Enlace para Aplicar</label>
+                <input asp-for="Enlace" class="form-control" />
+                <span asp-validation-for="Enlace" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

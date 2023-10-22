@@ -1,0 +1,57 @@
+﻿@model HelloWorld.Models.Empleo
+
+@{
+    ViewData["Title"] = "Eliminar Empleo";
+}
+
+<h1>Eliminar Empleo</h1>
+
+<h3>¿Estás seguro de que deseas eliminar esta oferta de empleo?</h3>
+<div>
+    <h4>Detalles del Empleo</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Logo)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Model.Logo" alt="@Model.Titulo" width="100" height="100" style="object-fit: cover;" />
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Categoria)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Categoria)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Salario)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Salario)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Enlace)
+        </dt>
+        <dd class="col-sm-10">
+            <a href="@Model.Enlace" target="_blank">Ver Enlace</a>
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+    </form>
+</div>
